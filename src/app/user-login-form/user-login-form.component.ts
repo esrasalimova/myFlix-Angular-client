@@ -14,10 +14,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./user-login-form.component.scss'],
 })
 export class UserLoginFormComponent implements OnInit {
-  @Input() userData = {
-    username: '',
-    password: '',
-  };
+  @Input() userData = { Username: '', Password: ''};
 
   constructor(
     public fetchApiData: FetchApiDataService,

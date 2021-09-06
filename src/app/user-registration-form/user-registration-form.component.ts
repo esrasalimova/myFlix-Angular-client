@@ -14,15 +14,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./user-registration-form.component.scss'],
 })
 export class UserRegistrationFormComponent implements OnInit {
-  @Input() userData = {
-    name: '',
-    lastName: '',
-    birthday: '',
-    country: '',
-    email: '',
-    username: '',
-    password: '',
-  };
+  @Input() userData = { Username: '', Password: '', Email: ''};
 
   constructor(
     public fetchApiData: FetchApiDataService,
