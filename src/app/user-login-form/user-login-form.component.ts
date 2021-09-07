@@ -26,12 +26,14 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {}
 
   loginUser(): void {
+    console.log(this.userData)
     this.fetchApiData.userLogin(this.userData).subscribe(
       // Login successful.
       (response) => {
         // Store current user and token in localStorage.
         localStorage.setItem('username', response.user.username);
         localStorage.setItem('token', response.token);
+        console.log(this.userData)
 
         this.dialogRef.close();
         this.snackBar.open(`Welcome back, ${response.user.name}!`, 'OK', {
