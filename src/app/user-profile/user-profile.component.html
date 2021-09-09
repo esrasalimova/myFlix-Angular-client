@@ -1,0 +1,107 @@
+<app-nav-bar></app-nav-bar>
+<div class="main-profile">
+    <mat-card class="custom-card">
+      <mat-card-header>
+        <mat-card-title [style.margin]="'0'">Profile</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form>
+          <!-- Username -->
+          <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              enabled
+              [(ngModel)]="userData.Username"
+              type="text"
+              name="Username"
+              required
+            />
+          </mat-form-field>
+          
+          <!-- Birthday -->
+          <mat-form-field>
+            <mat-label>Birthday</mat-label>
+            <input
+              matInput
+              [(ngModel)]="userData.Birthday"
+              type="date"
+              name="Birthday"
+              required
+            />
+            <button
+              *ngIf="userData.Birthday"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear birthday input"
+              (click)="userData.Birthday = ''"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          
+          <!-- Email -->
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              [(ngModel)]="userData.Email"
+              type="email"
+              name="Email"
+              required
+            />
+            <button
+              *ngIf="userData.Email"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear email input"
+              (click)="userData.Email = ''"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <!-- Password -->
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              [(ngModel)]="userData.Password"
+              type="password"
+              name="Password"
+              required
+            />
+            <mat-hint
+              >At least 8 characters (A-Z, a-z, 0-9, @ # $ % ! ?)</mat-hint
+            >
+            <button
+              *ngIf="userData.Password"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear password input"
+              (click)="userData.Password = ''"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions [style.padding]="'1rem 0'">
+        <button
+          (click)="openEditUserDialog()"
+          mat-raised-button
+          color="primary"
+          [style.margin]="'0.5rem'"
+        >
+          Update Profile
+        </button>
+        <button
+          mat-raised-button
+          (click)="openDeleteUserDialog()"
+          color="warn"
+          [style.margin]="'0.5rem'"
+        >
+          Delete Profile
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
