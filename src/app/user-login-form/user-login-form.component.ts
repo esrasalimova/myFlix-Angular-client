@@ -33,7 +33,7 @@ export class UserLoginFormComponent implements OnInit {
       // Login successful.
       (response) => {
         // Store current user and token in localStorage.
-        localStorage.setItem('username', response.user.username);
+        localStorage.setItem('username', response.user.Username);
         localStorage.setItem('token', response.token);
         console.log(this.userData)
 

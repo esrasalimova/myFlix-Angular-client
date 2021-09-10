@@ -13,8 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./user-favorite.component.scss']
 })
 export class UserFavoriteComponent implements OnInit {
-  movie: any[] = [];
-  favorite: any[] = [];
+  movies: any[] = [];
+  favoriteMovieIds: any[] = [];
   // Set user's username.
   username = localStorage.getItem('username');
 
@@ -23,21 +23,19 @@ export class UserFavoriteComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getFavoritesMovies();
+    this.getMovies();
   }
 
-  getFavoritesMovies(): void {
-    this.fetchApiData.getFavorites(this.username).subscribe((resp: any) => {
-      const favoriteMovies = resp.favoriteMovies;
-
-      favoriteMovies.forEach((favoriteMovie: any) => {
-        this.fetchApiData.getMovie(favoriteMovie).subscribe((resp: any) => {
-          this.movie.push(resp);
-        });
-        return this.movie;
-      });
+  getMovies(): void {
+    const user=localStorage.getItem ('username');
+    this.fetchApiData.getUser(user).subscribe((resp: any) => {
+      this.favoriteMovieIds = resp.favoriteMovies;
+      console.log(this.movies);
+      return this.movies;
     });
+
   }
+
   getDirector(name: string, bio: string, birth: string, death: string): void {
     this.dialog.open(MovieDirectorComponent, {
       data: {

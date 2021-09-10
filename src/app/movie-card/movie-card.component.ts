@@ -57,9 +57,10 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+
   toggleFavoriteMovie(movieId: any, movieTitle: any): void {
-    this.fetchApiData.getFavorites(this.username).subscribe((resp: any) => {
-      const favoriteMovies = resp.favoriteMovies;
+    this.fetchApiData.getMovie(this.username).subscribe((resp: any) => {
+      const favoriteMovies = resp.FavoriteMovies;
 
       if (favoriteMovies.includes(movieId)) {
         this.fetchApiData

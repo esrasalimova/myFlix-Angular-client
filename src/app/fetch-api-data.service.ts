@@ -90,13 +90,13 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
-  // Add movie to Favorites list (Endpoint: 'users/:username/favorites/:movie_id', Method: POST).
+  // Add movie to Favorites list (Endpoint: '/users/:Username/Movies/:MovieID', Method: POST).
   public addMovieFavorites(username: any, movieId: any): Observable<any> {
     const token = localStorage.getItem('token');
 
     // Pass the token in the HTTP header to the call.
     return this.http
-      .post(apiUrl + `users/${username}/favorites/${movieId}`, {
+      .post(apiUrl + `users/${username}/Movies/${movieId}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -104,13 +104,13 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
-  // Remove movie from Favorites list (Endpoint: 'users/:username/favorites/:movie_id', Method: DELETE).
+  // Remove movie from Favorites list (Endpoint: '/users/:Username/Movies/:MovieID', Method: DELETE).
   public removeMovieFavorites(username: any, movieId: any): Observable<any> {
     const token = localStorage.getItem('token');
 
     // Pass the token in the HTTP header to the call.
     return this.http
-      .delete(apiUrl + `users/${username}/favorites/${movieId}`, {
+      .delete(apiUrl + `users/${username}/Movies/${movieId}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
