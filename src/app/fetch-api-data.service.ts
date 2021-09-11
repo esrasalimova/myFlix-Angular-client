@@ -90,6 +90,23 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
+
+
+  // Get Favorites list (Endpoint: 'users/:username/Movies/:MovieID', Method: GET).
+  public getMovies(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+
+    // Pass the token in the HTTP header to the call.
+    return this.http
+      .get(apiUrl + `users/${username}/Movies/`, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token,
+        }),
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   // Add movie to Favorites list (Endpoint: '/users/:Username/Movies/:MovieID', Method: POST).
   public addMovieFavorites(username: any, movieId: any): Observable<any> {
     const token = localStorage.getItem('token');

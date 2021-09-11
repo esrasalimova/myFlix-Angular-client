@@ -13,8 +13,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent implements OnInit {
+  user: any = {};
   movies: any[] = [];
   faves: any[] = [];
+  favorites: any[] = [];
   username = localStorage.getItem('username');
 
   constructor(public fetchApiData: FetchApiDataService,
@@ -23,7 +25,9 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+    
   }
+
 
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -32,6 +36,7 @@ export class MovieCardComponent implements OnInit {
         return this.movies;
       });
     }
+
 
   getDirector(name: string, bio: string, birth: string, death: string): void {
     this.dialog.open(MovieDirectorComponent, {
@@ -59,8 +64,8 @@ export class MovieCardComponent implements OnInit {
 
 
   toggleFavoriteMovie(movieId: any, movieTitle: any): void {
-    this.fetchApiData.getMovie(this.username).subscribe((resp: any) => {
-      const favoriteMovies = resp.FavoriteMovies;
+    this.fetchApiData.getFavorites(this.username).subscribe((resp: any) => {
+      const favoriteMovies = resp.favoriteMovies;
 
       if (favoriteMovies.includes(movieId)) {
         this.fetchApiData
@@ -89,8 +94,6 @@ export class MovieCardComponent implements OnInit {
       }
     });
   }
-
-  
   
 
 }
