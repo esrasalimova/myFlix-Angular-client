@@ -27,6 +27,10 @@ export class UserLoginFormComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {}
 
+  /**
+   * Send user data to server-side validation and login
+   */
+
   loginUser(): void {
     console.log(this.userData)
     this.fetchApiData.userLogin(this.userData).subscribe(

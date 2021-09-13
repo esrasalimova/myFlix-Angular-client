@@ -29,12 +29,21 @@ export class MovieCardComponent implements OnInit {
     
   }
 
+  /**
+   * @returns favorite movies of user
+   */
+
   favedMovies(): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.getUser(user).subscribe((resp: any) =>{
       this.favoriteMovieIds = resp.FavoriteMovies;
     });
   }
+
+  /**
+   * Fetch all movies from database
+   * @returns All movies stored in the database
+   */
 
 
   getMovies(): void {
@@ -44,6 +53,15 @@ export class MovieCardComponent implements OnInit {
         return this.movies;
       });
     }
+  
+    /**
+     * Get director by
+     * @param name 
+     * @param bio 
+     * @param birth 
+     * @param death 
+     * through moviedirector component
+     */
 
 
   getDirector(name: string, bio: string, birth: string, death: string): void {
@@ -56,11 +74,22 @@ export class MovieCardComponent implements OnInit {
       }
     })
   }
+
+  /**
+   * Open dialog to show movie description through MovieDescriptionComponent
+   * @param description 
+   */
   descriptionDetails(description: string): void {
     this.dialog.open(MovieDescriptionComponent, {
       data: { description }
     })
   }
+
+  /**
+   * Open dialog to show movie genre details through MovieGenreComponent
+   * @param name 
+   * @param description 
+   */
   genreDetails(name: string, description: string): void {
     this.dialog.open(MovieGenreComponent, {
       data: {
@@ -69,6 +98,12 @@ export class MovieCardComponent implements OnInit {
       }
     })
   }
+
+  /**
+   * Add or remove movies from the Favorites list
+   * @param id 
+   * @param movieTitle 
+   */
 
 
   toggleFavoriteMovie(id: string, movieTitle: any): void {

@@ -18,6 +18,12 @@ export class FetchApiDataService {
   // Inject the HttpClient module to the constructor parameters.
   constructor(private http: HttpClient) {}
 
+  /**
+   * Registration to the API
+   * @param userDetails 
+   * @returns status message: success/error
+   */
+
   // User registration (Endpoint: 'users', Method: POST).
   public userRegistration(userDetails: any): Observable<any> {
     // Send the any argument to the API endpoint and return the API response.
@@ -26,6 +32,12 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Login to the Application
+   * @param userDetails 
+   * @returns status message: success/error
+   */
+
   // User login (Endpoint: 'login', Method: POST).
   public userLogin(userDetails: any): Observable<any> {
     // Send the any argument to the API endpoint and return the API response.
@@ -33,6 +45,12 @@ export class FetchApiDataService {
       .post(apiUrl + 'login', userDetails)
       .pipe(catchError(this.handleError));
   }
+
+  /**
+   * Get one user by username
+   * @param username 
+   * @returns Object - data about a user
+   */
 
   // Get user (Endpoint: 'users/:username', Method: GET).
   public getUser(username: any): Observable<any> {
@@ -48,6 +66,12 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Update user information
+   * @param userDetails 
+   * @returns status message: success/error
+   */
+
   // Edit user (Endpoint: 'users/:username', Method: PUT).
   public editUser(userDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
@@ -61,6 +85,12 @@ export class FetchApiDataService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  /**
+   * Delete user account
+   * @param username (Injected automatically, username extracted from login params)
+   * @returns status message
+   */
 
   // Delete user (Endpoint: 'users/:username', Method: DELETE).
   public deleteUser(username: any): Observable<any> {
@@ -76,6 +106,12 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * 
+   * @param username (Injected automatically, username extracted from login params)
+   * @returns Array - favorie movies of a user
+   */
+
   // Get Favorites list (Endpoint: 'users/:username/favorites', Method: GET).
   public getFavorites(username: any): Observable<any> {
     const token = localStorage.getItem('token');
@@ -90,7 +126,10 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
-
+  /**
+   * Gets favorite movies list of a user
+   * @returns Request to the database
+   */
 
   // Get Favorites list (Endpoint: 'users/:username/Movies/:MovieID', Method: GET).
   public getMovies(): Observable<any> {
@@ -107,6 +146,13 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Add movie to Favorites list
+   * @param username 
+   * @param id 
+   * @returns request to the database (Endpoint: '/users/:Username/Movies/:MovieID', Method: POST)
+   */
+
   // Add movie to Favorites list (Endpoint: '/users/:Username/Movies/:MovieID', Method: POST).
   public addMovieFavorites(username: any, id: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -120,6 +166,13 @@ export class FetchApiDataService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  /**
+   * Remove movie from Favorites list
+   * @param username 
+   * @param movieId 
+   * @returns request to the database (Endpoint: '/users/:Username/Movies/:MovieID', Method: DELETE)
+   */
 
   // Remove movie from Favorites list (Endpoint: '/users/:Username/Movies/:MovieID', Method: DELETE).
   public removeMovieFavorites(username: any, movieId: any): Observable<any> {
@@ -135,6 +188,12 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Get To-Watch List
+   * @param username 
+   * @returns Request to the database (Endpoint: 'users/:username/towatch', Method: GET)
+   */
+
   // Get To-Watch list (Endpoint: 'users/:username/towatch', Method: GET).
   public getToWatch(username: any): Observable<any> {
     const token = localStorage.getItem('token');
@@ -148,6 +207,13 @@ export class FetchApiDataService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  /**
+   * Add movie to To--Watch list
+   * @param username 
+   * @param movieId 
+   * @returns 
+   */
 
   // Add movie to To-Watch list (Endpoint: 'users/:username/towatch/:movie_id', Method: POST).
   public addMovieToWatch(username: any, movieId: any): Observable<any> {
@@ -163,6 +229,13 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Remove movie from To-Watch List
+   * @param username 
+   * @param movieId 
+   * @returns Request to the database (Endpoint: 'users/:username/towatch/:movie_id', Method: DELETE)
+   */
+
   // Remove movie from To-Watch list (Endpoint: 'users/:username/towatch/:movie_id', Method: DELETE).
   public removeMovieToWatch(username: any, movieId: any): Observable<any> {
     const token = localStorage.getItem('token');
@@ -176,6 +249,11 @@ export class FetchApiDataService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  /**
+   * Get all movies endpoint
+   * @returns Request to the database (Endpoint: 'movies', Method: GET)
+   */
 
   // Get all movies endpoint (Endpoint: 'movies', Method: GET).
   public getAllMovies(): Observable<any> {
@@ -191,6 +269,12 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Get one movie endpoint
+   * @param movieTitle 
+   * @returns Request to the database (Endpoint: 'movies/:title', Method: GET)
+   */
+
   // Get one movie endpoint (Endpoint: 'movies/:title', Method: GET).
   public getMovie(movieTitle: any): Observable<any> {
     const token = localStorage.getItem('token');
@@ -204,6 +288,11 @@ export class FetchApiDataService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  /**
+   * Get genres endpoint
+   * @returns Request to the database (Endpoint: 'genres', Method: GET)
+   */
 
   // Get genres endpoint (Endpoint: 'genres', Method: GET).
   public getGenres(): Observable<any> {
@@ -219,6 +308,12 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Get one genre endpoint
+   * @param genreName 
+   * @returns Request to the database (Endpoint: 'genres/:name', Method: GET)
+   */
+
   // Get one genre endpoint (Endpoint: 'genres/:name', Method: GET).
   public getGenre(genreName: any): Observable<any> {
     const token = localStorage.getItem('token');
@@ -232,6 +327,11 @@ export class FetchApiDataService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  /**
+   * Get directors endpoint
+   * @returns Request to the database (Endpoint: 'directors', Method: GET)
+   */
 
   // Get directors endpoint (Endpoint: 'directors', Method: GET).
   public getDirectors(): Observable<any> {
@@ -247,6 +347,12 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Get one director endpoint
+   * @param directorName 
+   * @returns request to the database (Endpoint: 'directors/:name', Method: GET)
+   */
+
   // Get one director endpoint (Endpoint: 'directors/:name', Method: GET).
   public getDirector(directorName: any): Observable<any> {
     const token = localStorage.getItem('token');
@@ -260,6 +366,11 @@ export class FetchApiDataService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  /**
+   * Get actors endpoint
+   * @returns Request to the database (Endpoint: 'actors', Method: GET)
+   */
 
   // Get actors endpoint (Endpoint: 'actors', Method: GET).
   public getActors(): Observable<any> {
@@ -275,6 +386,12 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   * Get one actor endpoint
+   * @param actorName 
+   * @returns Request to the database (Endpoint: 'actors/:name', Method: GET)
+   */
+
   // Get one actor endpoint (Endpoint: 'actors/:name', Method: GET).
   public getActor(actorName: any): Observable<any> {
     const token = localStorage.getItem('token');
@@ -288,6 +405,12 @@ export class FetchApiDataService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  /**
+   * Error handler
+   * @param error 
+   * @returns http error response
+   */
 
   // Error handler
   private handleError(error: HttpErrorResponse): any {

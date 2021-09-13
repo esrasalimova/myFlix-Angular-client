@@ -16,6 +16,10 @@ export class WelcomePageComponent implements OnInit {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {}
 
+  /**
+   * Open user registration dialog when "Sign up" button is clicked
+   */
+
   // Open user registration dialog when "Sign up" button is clicked.
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
@@ -23,6 +27,10 @@ export class WelcomePageComponent implements OnInit {
       width: '280px',
     });
   }
+
+  /**
+   * Open user registration dialog when "Log in" button is clicked
+   */
 
   // Open user registration dialog when "Log in" button is clicked.
   openUserLoginDialog(): void {
